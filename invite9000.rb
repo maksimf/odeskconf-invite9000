@@ -25,20 +25,18 @@ post '/register' do
         "attachment_type" => "default",
         "actions" => [
           {
-            "name" => "invite",
+            "name" => params['email'],
             "text" => "Пригласить",
             "type" => "button",
             "value" => "accept",
             "style" => "primary",
-            "email" => params['email']
           },
           {
-            "name" => "invite",
+            "name" => params['email'],
             "text" => "Отказать",
             "type" => "button",
             "value" => "decline",
             "style" => "danger",
-            "email" => params['email']
           }
         ]
       }
@@ -51,12 +49,13 @@ end
 
 post '/invite' do
   payload = JSON.parse(URI.decode_www_form(request.body.read)[0][1])
-  email = payload['actions'][0]['email']
+  email = payload['actions'][0]['name']
+  action = payload['actions'][0]['value']
   url_params = URI.encode_www_form([['token', ENV['SLACK_TOKEN']], ['email', email]])
   url = "https://slack.com/api/users.admin.invite?#{url_params}"
 
   halt 401 unless ENV['SLACK_VERIFICATION'] == payload['token']
-  halt 200, ":x: Юзеру с почтой #{email} отказано" if email == 'decline'
+  halt 200, ":x: Юзеру с почтой #{email} отказано" if action == 'decline'
 
   RestClient.post(url, '')
 
