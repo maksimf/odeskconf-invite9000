@@ -54,7 +54,9 @@ post '/invite' do
   url = "https://slack.com/api/users.admin.invite?#{url_params}"
 
   halt 401 unless ENV['SLACK_VERIFICATION'] == payload['token']
-  halt 201 if email == 'decline'
+  halt 200, ":x: Юзеру с почтой #{email} отказано" if email == 'decline'
 
   RestClient.post(url, '')
+
+  halt 200, ":white_check_mark: Юзер с почтой #{email} приглашён"
 end
