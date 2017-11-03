@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <style>
+      body {
+        background: url(img/yoba.png) no-repeat right bottom;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row mt-5">
+      <div class="col-5 offset-1">
+        <h3>Регистрация в Slack-сообщество OdeskConf</h3>
+        <form method="post" action="/register">
+          <div class="form-group">
+            <label for="email">Почта</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Твой email" name="email" autofocus required>
+            <small id="emailHelp" class="form-text text-muted">пожалуйста, не используй временную почту вроде 10minutemail.com</small>
+          </div>
+          <div class="form-group">
+            <label for="about">Пару слов о себе</label>
+            <textarea class="form-control" id="about" placeholder="Чем занимаешься? Фрилансишь или работаешь в офисе" name="about" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="hearedFrom">Откуда узнал про конфу?</label>
+            <input type="text" class="form-control" id="hearedFrom" aria-describedby="heardFromHelp" placeholder="Google, знакомый рассказал?" name="heardFrom" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
