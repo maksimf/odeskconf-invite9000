@@ -18,7 +18,8 @@ post '/register' do
     "text" => "*Почта:* #{params['email']}\n" \
               "*Откуда узнал про конфу?:* #{params['heardFrom']}\n" \
               "*Пара слов о себе:* #{params['about']}",
-    "replace_original" => false,          
+    "replace_original" => false,
+    "delete_original" => false,          
     "attachments" => [
       {
         "fallback" => "Не удалось отправить запрос",
